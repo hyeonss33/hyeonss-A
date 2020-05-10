@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style type="text/css">
+    A:link {text-decoration: none; color: blue;}
+    A:visited {text-decoration: none; color: blue;}
+    A:active {text-decoration: none; color: blue;}
+    A:hover {text-decoration: none; color: blue;}
+    </style>
+</head>
+
+<body>
+    <h1 style="color: blue;font-size: 8em;text-align: center;font-family: 'Times New Roman', Times, serif;">WORDCOUNT</h1>
+    <div style="font-style: italic;text-align: center;padding-right: 3.8rem;">
+    --->click here <a href="{%url 'about' %}">about wordcount</a>
+    </div>
+    <div style="text-align: center;"> 
+    <form action="{%url 'result'%}" method="GET">
+            <textarea name="fulltext" id="" cols="30" rows="10" placeholder="아무 말이나 적어보세요."></textarea>
+
+            <button type="submit">count!</button>
+        </form>
+    </div>
+    
+        
+</body>
+</html>
+  

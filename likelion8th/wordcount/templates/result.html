@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style type="text/css">
+    A:link {text-decoration: none; color: blue;}
+    A:visited {text-decoration: none; color: blue;}
+    A:active {text-decoration: none; color: blue;}
+    A:hover {text-decoration: none; color: blue;}
+    </style>
+</head>
+
+<body>
+<h1 style="font-family:'Times New Roman', Times, serif;font-size: 8rem; text-align: center;">Result</h1>
+<div style="font-style: italic;text-align: center;">
+    --->click here <a href="{%url 'home' %}">back to wordcount</a>
+</div>    
+<div style="text-align: center;">
+<h2>Your total words is {{total}}.</h2>
+
+<h2>Your words</h2>
+{{text}}
+<br>
+<h2>Count</h2>
+{%for word, count in dictionary%}
+
+{{word}}:{{count}}
+<br>
+
+{% endfor %}
+</div>
+</body>
+</html>
