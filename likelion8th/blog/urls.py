@@ -15,12 +15,13 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path,include
-import wordcount.urls
-import blog.urls
+from . import views
 
 urlpatterns = [
-    path('admin/', admin.site.urls),
-    path('',blog.views.list, name = "list"),
-    path('blog/',include(blog.urls)),
-    path('wordcount/',include(wordcount.urls)),
+    path('<int:blog_id>', views.detail, name = "detail"),
+    path('new',views.new, name="new"),
+    path('create',views.create, name = "create"),
+    path('edit/<int:blog_id>',views.edit, name = "edit"),
+    path('update/<int:blog_id>',views.update, name = "update"),
+    path('delete/<int:blog_id>',views.delete, name = "delete"),
 ]
