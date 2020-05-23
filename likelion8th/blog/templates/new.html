@@ -1,11 +1,41 @@
-<h1>새 글 작성하기</h1>
-<form action="{%url 'create'%}" method="POST">
-    {%csrf_token%}
-    제목:<input type="text" name = "title">
-    <br>
-    <br>
-    본문: <textarea name="body" id="" cols="30" rows="10"></textarea>
-    <br>
-    <button type = "submit">작성</button>
-</form>
+<style>
+    #container {
+        width: 1380px;
+        margin: 0px auto;
+        padding: 20px;
+      }
 
+      #image {
+        width: 1380px;
+        height: 250px;
+    }
+    #content {
+        width: 850px;
+        height: 200px;
+        padding: 20px;
+        margin-bottom: 20px;
+        float: left;
+      }
+</style>
+{% load static %}
+<body>
+    <div id="container">
+        <div id="image">
+            <img src={% static 'gradient1.png' %} alt="메인배경" width="1380" height="250px">
+        </div>
+        <div id="content">
+            <h2>곡 추천하기</h2>
+            <hr>
+        <form method='POST' enctype="multipart/form-data">
+                {% csrf_token %}
+                <table>
+                    {{form.as_table}}
+                </table>
+            
+                <input class= "btn btn-dark" type="submit" value="저장">
+        
+            </form>
+        </div>
+    </div>
+</body>
+</style>

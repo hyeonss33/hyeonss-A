@@ -1,18 +1,90 @@
 
-<h1>Blog project</h1>
+<style type="text/css">
+    a:link { color: red; text-decoration: none;}
+    a:visited { color: black; text-decoration: none;}
+    a:hover { color: blue; text-decoration: underline;}
+    #container {
+        width: 1380px;
+        margin: 0px auto;
+        padding: 20px;
 
-<a href="{%url 'new' %}">새글 작성하기</a>
+     
+      }
+    #header {
+        padding: 20px;
+        margin-bottom: 20px;
+        font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif; 
+        font-size: 15px;
+  
+      }
+    .title {
+        color: rgb(16, 1, 29);
+    }
+    #image {
+        width: 1380px;
+        height: 250px;
 
-{% for blog in blogs%}
+    }
+    #content {
+        width: 850px;
+        height: 200px;
+        padding: 20px;
+        margin-bottom: 20px;
+        float: left;
 
-<hr>
-<a href="{%url 'detail' blog.id%}">
-{{blog.title}}
-<br>
-{{blog.pub_date}}
-<br>
-{{blog.summary}}
-<br>
-</a>
+      }
+    #sidebar {
+        width: 438px; 
+        padding: 20px;
+        margin-bottom: 20px;
+        float: right;
+ 
+      }
+    #footer {
+        clear: both;
+        padding: 20px;
+      }
+</style>
 
-{% endfor %}
+{% load static %}
+<body>
+    <div id="container">
+        <div id="header">
+            <h1 class="title">| PLAYLIST |&nbsp&nbsponly</h1>
+        </div>
+        <div id="image">
+            <img src={% static 'gradient1.png' %} alt="메인배경" width="1380" height="250px">
+        </div>
+        <div id="content">
+            <h2>Introduce</h2>
+            <hr>
+            <p>매주 금요일마다 'only'만의 플레이리스를 공유합니다.</p>
+            <p>추천해주신 곡들과 추천수에 따라 구성됩니다. </p>
+        </div>
+        <div id="sidebar">
+            <h2>Best</h2>
+            <hr>
+            <ul>
+                <li>비오는 날 듣기 좋은 팝송</li>
+                <li>Hidden song- 국내인디음악</li>
+                <li>힙한 감성 플레이리스트</li>
+            </ul>
+        </div>
+        <div id="footer">
+            <a href="{%url 'new' %}"><b>곡 추천하기</b></a>
+            {% for blog in blogs%}
+
+            <hr>
+            <a href="{%url 'detail' blog.id%}">
+            <b>{{blog.title}}</b>
+            <br>
+            {{blog.pub_date}}
+            <br>
+            {{blog.summary}}
+            <br>
+            <img src="{{blog.image.url}}">
+
+            {% endfor %}
+        </div>
+    </div>
+</body>
