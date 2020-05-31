@@ -48,6 +48,14 @@
 
 {% load static %}
 <body>
+    <div>
+        {% if user.is_authenticated %}
+            <h3>안녕하세요</h3>
+        {% endif %}
+        <a href="{% url 'login'%}">로그인</a>
+        <a href="{% url 'logout'%}">로그아웃</a>
+
+    </div>
     <div id="container">
         <div id="header">
             <h1 class="title">| PLAYLIST |&nbsp&nbsponly</h1>
