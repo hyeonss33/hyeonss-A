@@ -1,45 +1,70 @@
-<style>
-    #container {
-        width: 1380px;
-        margin: 0px auto;
-        padding: 20px;
-      }
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.5.0/css/all.css">
+        <title></title>
+    </head>
+    <style>
+        #container {
+            width: 1380px;
+            margin: 0px auto;
+            padding: 20px;
+        }
 
-      #image {
-        width: 1380px;
-        height: 250px;
-    }
-    #content {
-        width: 850px;
-        padding: 20px;
-        margin-bottom: 20px;
-        float: left;
-      }
-    #footer {
-        clear: both;
-        padding: 20px;
-    }
-</style>
+        #image {
+            width: 1380px;
+            height: 250px;
+        }
+        #content {
+            width: 850px;
+            padding: 20px;
+            margin-bottom: 20px;
+            float: left;
+         }
+        #footer {
+            clear: both;
+            padding: 20px;
+        }
+    </style>
 {% load static %}
-<body>
-    <div id="container">
-        <div id="image">
-            <img src={% static 'gradient1.png' %} alt="메인배경" width="1380" height="250px">
-        </div>
-        <div id="content">
-            <h3>{{blog.title}}</h3>
-            <hr>
-            <p>{{blog.pub_date}}</p>
+    <body>
+        <div id="container">
+            <div id="image">
+                <img src={% static 'gradient1.png' %} alt="메인배경" width="1380" height="250px">
+            </div>
+            <div id="content">
+                <h3>{{blog.title}}, <i class="fas fa-heart"></i>[{{likes}}]</h3>
+                <hr>
+                <p>{{blog.pub_date}}</p>
 
-            <p>{{blog.body}}</p>
+                <p>{{blog.body}}</p>
 
-            <img src="{{blog.image.url}}">
+                <img src="{{blog.image.url}}">
+            </div>
+            <div id="footer">
+                <a href="{%url 'edit' blog.id %}">수정하기</a>
+                <a href="{%url 'delete' blog.id %}">삭제하기</a>
+                <a href="{%url 'list'%}"> 목록 </a>
+                <hr>
+                {% for comment in comments %}
+                <p>작성자: {{comment.author}}</p>
+                <p>내용: {{comment.body}}</p>
+                <p>{{comment.pub_date}}</p>
+                <hr>
+                {% endfor %}
+            
+                <form action="/blog/commenting/{{blog.id}}" method="POST">
+                {%csrf_token%}
+                <input type="text" name='body'>
+                <button type="submit">작성</button>
+                </form>
+
+                <form action="/blog/like/{{blog.id}}" method="get">
+                    <button type="submit">좋아요</button>
+                </form>
+            </div>
         </div>
-        <div id="footer">
-            <a href="{%url 'edit' blog.id %}">수정하기</a>
-            <a href="{%url 'delete' blog.id %}">삭제하기</a>
-            <a href="{%url 'list'%}"> 목록 </a>
-        </div>
-    </div>
-</body>
-</style>
+    </body>
+    </style>
+</html>
